@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7e69e937-1285-4141-b7f0-f521f66352d7">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT*FROM perjanjian]]>
+	</queryString>
+	<field name="id_perjanjian" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="no_rm" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nama_pasien" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="poliklinik" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dokter" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tgl_perjanjian" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="keterangan" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="131" y="23" width="305" height="42" uuid="b4d51d9d-bc4e-43cd-913c-59e086e3f2bf"/>
+				<textElement textAlignment="Center">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LAPORAN PERJANJIAN]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="32" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="20" uuid="08067126-f0de-4da5-b9ba-4fc06a439eb8"/>
+				<text><![CDATA[id_perjanjian]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="0" width="55" height="20" uuid="5895d676-f4b4-4ee2-9b0a-bc14e6b3fe68"/>
+				<text><![CDATA[no_rm]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="155" y="0" width="100" height="20" uuid="64d64894-fc19-4c70-974a-dffeec3c747f"/>
+				<text><![CDATA[nama_pasien]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="255" y="0" width="63" height="20" uuid="1caafcba-d54a-4b5a-866c-cbd42582a923"/>
+				<text><![CDATA[poliklinik]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="318" y="0" width="100" height="20" uuid="38d5cb4c-2647-4b3e-a06d-b5c09d154925"/>
+				<text><![CDATA[dokter]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="418" y="0" width="80" height="20" uuid="d50a028d-ee19-4ae7-9a0a-c0adc8a6dd67"/>
+				<text><![CDATA[tgl_perjanjian]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="498" y="0" width="57" height="20" uuid="5f3d2acb-43f4-4f6d-94f5-094629abbbea"/>
+				<text><![CDATA[keterangan]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="5c0bd0eb-2c82-4003-8022-af3ba940aed5"/>
+				<textFieldExpression><![CDATA[$F{id_perjanjian}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="55" height="20" uuid="292b2f3f-aa7f-4bf6-b279-ae0cf3983b5c"/>
+				<textFieldExpression><![CDATA[$F{no_rm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="155" y="0" width="100" height="20" uuid="7731fa01-4483-41b2-bc32-009808d4c05b"/>
+				<textFieldExpression><![CDATA[$F{nama_pasien}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="255" y="0" width="63" height="20" uuid="89a4afba-8808-4a51-88dd-8e838b8e7555"/>
+				<textFieldExpression><![CDATA[$F{poliklinik}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="318" y="0" width="100" height="20" uuid="19fcd4b1-c18a-42f3-a809-c2fd431b1f94"/>
+				<textFieldExpression><![CDATA[$F{dokter}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="418" y="0" width="80" height="20" uuid="455285d3-2c60-4b3e-8940-5e2080b67937"/>
+				<textFieldExpression><![CDATA[$F{tgl_perjanjian}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="498" y="0" width="57" height="20" uuid="3af07134-c8fb-4768-84bc-fa46e0cdea43"/>
+				<textFieldExpression><![CDATA[$F{keterangan}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

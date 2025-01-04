@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="69ea292b-cf86-413b-b6cf-9d2a558ab019">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT*FROM rekam_medis]]>
+	</queryString>
+	<field name="no_rm" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tgl_berobat" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jam" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_poliklinik" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_dokter" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_diagnosa" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_icd" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_tindakan" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="keterangan" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tipe_bayar" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="158" y="19" width="239" height="35" uuid="b4013289-c990-42cf-8856-a1e2b85d4abc"/>
+				<textElement textAlignment="Center">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LAPORAN REKAM MEDIS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="38" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="27" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="41" height="20" uuid="966fdc5e-9334-423d-bc45-c7c266bd3831"/>
+				<text><![CDATA[no_rm]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="41" y="0" width="65" height="20" uuid="35841972-0876-43a2-aaf3-2ff29e135a35"/>
+				<text><![CDATA[tgl_berobat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="106" y="0" width="39" height="20" uuid="4a12de3f-f54c-43c0-8641-8cf5a0ee8a5d"/>
+				<text><![CDATA[jam]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="145" y="0" width="62" height="20" uuid="e6cb663a-fdb1-4d08-95c2-586648269e7d"/>
+				<text><![CDATA[id_poliklinik]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="207" y="0" width="75" height="20" uuid="4cf5c7c0-2cdd-4ba4-960a-227593d8de3d"/>
+				<text><![CDATA[id_dokter]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="282" y="0" width="80" height="20" uuid="deacb0c0-809c-4093-a6d1-805d57db28ac"/>
+				<text><![CDATA[id_diagnosa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="362" y="0" width="58" height="20" uuid="8118caa2-4912-4c5a-b865-e84e2fb7bd74"/>
+				<text><![CDATA[id_icd]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="420" y="0" width="64" height="20" uuid="4e65426e-a21b-4a8c-9230-6b687e9b037e"/>
+				<text><![CDATA[id_tindakan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="484" y="0" width="39" height="20" uuid="74314089-21fe-41b3-bd6b-c6f32cf43b03"/>
+				<text><![CDATA[keterangan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="523" y="0" width="32" height="20" uuid="82400d1d-2747-4dd1-8b89-842a7933fbb8"/>
+				<text><![CDATA[tipe_bayar]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="28" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="41" height="20" uuid="b8b50d04-598f-40cd-855b-92433cf40b24"/>
+				<textFieldExpression><![CDATA[$F{no_rm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="41" y="0" width="65" height="20" uuid="7ea3f28f-a2c1-4ce0-8d73-c4093a6cb0ab"/>
+				<textFieldExpression><![CDATA[$F{tgl_berobat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="106" y="0" width="39" height="20" uuid="6e52ba2a-fc39-48ac-a05d-92a156bc28a6"/>
+				<textFieldExpression><![CDATA[$F{jam}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="145" y="0" width="62" height="20" uuid="85e2f711-2053-4a88-9e60-82cc9e41e78a"/>
+				<textFieldExpression><![CDATA[$F{id_poliklinik}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="207" y="0" width="75" height="20" uuid="17d6146b-6da3-40a0-b87c-c569a9f4f80c"/>
+				<textFieldExpression><![CDATA[$F{id_dokter}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="282" y="0" width="80" height="20" uuid="c30dd70a-49ff-48b5-9184-ceb525b07aeb"/>
+				<textFieldExpression><![CDATA[$F{id_diagnosa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="362" y="0" width="58" height="20" uuid="af3aa3fe-28da-4bee-8962-1b540ccf674e"/>
+				<textFieldExpression><![CDATA[$F{id_icd}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="0" width="64" height="20" uuid="4890ced8-a583-409a-a8ac-ee206aad1501"/>
+				<textFieldExpression><![CDATA[$F{id_tindakan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="484" y="0" width="39" height="20" uuid="b27afe56-1942-4a81-91f1-e4a1333f6436"/>
+				<textFieldExpression><![CDATA[$F{keterangan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="523" y="0" width="32" height="20" uuid="3ee84cbe-ee27-4ac0-98ae-b514cbbb93d3"/>
+				<textFieldExpression><![CDATA[$F{tipe_bayar}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

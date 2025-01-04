@@ -6,6 +6,9 @@ package gui;
 import config.configDB;
 import javax.swing.JOptionPane;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 /**
  *
@@ -26,6 +29,23 @@ public class frameICD extends javax.swing.JFrame {
         crud.settingJudulTabel(TabelICD, judulKolom);
         crud.tampilTabel(TabelICD, sql, judulKolom);
         crud.settingLebarKolom(TabelICD, lebarKolom);
+    }
+    
+    private void cariData(String cari){
+        String sqlCari= "";
+        try {
+            if (cari.isEmpty()) {
+                sqlCari = "SELECT*FROM icd";
+            }else{
+                sqlCari="SELECT*FROM icd WHERE id_icd='"+cari+"'"+
+                        " or nama_icd='"+cari+"'";
+            }
+                crud.settingJudulTabel(TabelICD, judulKolom);
+                crud.tampilTabel(TabelICD, sqlCari, judulKolom);
+                crud.settingLebarKolom(TabelICD, lebarKolom);
+            
+        } catch (Exception e) {
+        }
     }
 
     /**
@@ -56,6 +76,9 @@ public class frameICD extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TabelICD = new javax.swing.JTable();
+        cetak = new javax.swing.JButton();
+        txtLaporan = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -97,6 +120,21 @@ public class frameICD extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(TabelICD);
 
+        cetak.setText("Cetak");
+        cetak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cetakActionPerformed(evt);
+            }
+        });
+
+        txtLaporan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtLaporanKeyReleased(evt);
+            }
+        });
+
+        jLabel3.setText("Filter");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,6 +164,14 @@ public class frameICD extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cetak)
+                .addGap(27, 27, 27))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtId, txtNama});
@@ -148,7 +194,12 @@ public class frameICD extends javax.swing.JFrame {
                     .addComponent(jButton4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cetak)
+                    .addComponent(txtLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addContainerGap())
         );
 
         pack();
@@ -158,9 +209,11 @@ public class frameICD extends javax.swing.JFrame {
         try {
             if (crud.duplicateKey("icd", "id_icd", txtId.getText())) {
                 JOptionPane.showMessageDialog(null, "ID ICD Sudah ada");
+                
             }else{
                 String[] isiField={txtId.getText(),txtNama.getText()};
                 crud.SimpanDinamis("icd", fieldSimpan, isiField);
+                refresh();
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.toString());
@@ -172,6 +225,7 @@ public class frameICD extends javax.swing.JFrame {
         try {
                 String[] valueField = {txtNama.getText()};
                 crud.UbahDinamis("icd", "id_icd", txtId.getText(), fieldEdit, valueField);
+                refresh();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.toString());
         }
@@ -182,10 +236,35 @@ public class frameICD extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
                 crud.HapusDinamis("icd", "id_icd", txtId.getText());
+                refresh();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.toString());
         }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void cetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cetakActionPerformed
+        // TODO add your handling code here:
+        try{
+            if (txtLaporan.getText().isEmpty()){
+                crud.tampilLaporan("src/laporan/icd.jrxml", "SELECT*FROM icd");
+            }else{
+                String sql="SELECT*FROM icd WHERE id_icd='"+txtLaporan.getText()+"'"+
+                        " or nama_icd='"+txtLaporan.getText()+"'";
+               crud.tampilLaporan("src/laporan/icd.jrxml", sql); 
+            }
+        }catch(Exception ex){
+            Logger.getLogger(frameICD.class.getName()).log(Level.SEVERE, null, ex);
+           
+
+        }
+
+        
+    }//GEN-LAST:event_cetakActionPerformed
+
+    private void txtLaporanKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLaporanKeyReleased
+        // TODO add your handling code here:
+        cariData(txtLaporan.getText());
+    }//GEN-LAST:event_txtLaporanKeyReleased
 
     /**
      * @param args the command line arguments
@@ -224,13 +303,16 @@ public class frameICD extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TabelICD;
+    private javax.swing.JButton cetak;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtId;
+    private javax.swing.JTextField txtLaporan;
     private javax.swing.JTextField txtNama;
     // End of variables declaration//GEN-END:variables
 }

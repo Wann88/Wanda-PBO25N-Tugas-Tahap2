@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="16b0a094-e3bc-44e4-bf0d-07bff89abfaa">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT*FROM dokter]]>
+	</queryString>
+	<field name="id_dokter" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nama" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="spesialisasi" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hari_praktek" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jam_praktek" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="alamat" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="telp" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="id_poli" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="153" y="18" width="260" height="50" uuid="183258dd-b391-406a-8989-dedf7c005041"/>
+				<textElement textAlignment="Center">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LAPORAN DOKTER]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="38" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="50" height="20" uuid="f715ccac-480d-4cdd-82ee-c655f741d9e8"/>
+				<text><![CDATA[id_dokter]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="50" y="0" width="100" height="20" uuid="ee917fb6-b309-4078-a2de-ffa47a4826c6"/>
+				<text><![CDATA[nama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="0" width="70" height="20" uuid="56564d15-5a84-4bd3-92c9-ce2a5798378a"/>
+				<text><![CDATA[spesialisasi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="0" width="100" height="20" uuid="068d1844-9692-414d-8c7c-cafefd2694fe"/>
+				<text><![CDATA[hari_praktek]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="0" width="64" height="20" uuid="8bad55ef-b158-4f61-a90f-faf377ef83f7"/>
+				<text><![CDATA[jam_praktek]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="384" y="0" width="117" height="20" uuid="040c4cf6-6148-440f-99fd-ec4cd4db9c56"/>
+				<text><![CDATA[alamat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="501" y="0" width="31" height="20" uuid="bcbb5a08-6002-4cec-b12d-eecae03950b5"/>
+				<text><![CDATA[id_poli]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="50" height="20" uuid="78741069-b5ad-4a18-a253-08e35808abe0"/>
+				<textFieldExpression><![CDATA[$F{id_dokter}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="50" y="0" width="100" height="20" uuid="1cb41e59-b150-41cc-b62e-3ef6c85730f1"/>
+				<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="153" y="0" width="67" height="20" uuid="045babbd-1556-4a21-876e-56b4019e044d"/>
+				<textFieldExpression><![CDATA[$F{spesialisasi}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="220" y="0" width="100" height="20" uuid="b230e69c-15e8-4af3-afa7-463721987982"/>
+				<textFieldExpression><![CDATA[$F{hari_praktek}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="0" width="64" height="20" uuid="6b5fbc73-67e3-4e9e-8efb-911c5d80f26b"/>
+				<textFieldExpression><![CDATA[$F{jam_praktek}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="384" y="0" width="117" height="20" uuid="eebb47a1-3472-4771-855f-4baee28140fa"/>
+				<textFieldExpression><![CDATA[$F{alamat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="501" y="0" width="31" height="20" uuid="6b156761-224d-4007-b4d3-7d5681cc9ceb"/>
+				<textFieldExpression><![CDATA[$F{id_poli}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

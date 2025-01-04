@@ -4,6 +4,8 @@
  */
 package gui;
 import config.configDB;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -26,6 +28,29 @@ public class framePerjanjian extends javax.swing.JFrame {
         crud.settingJudulTabel(TabelPerjanjian, judulKolom);
         crud.tampilTabel(TabelPerjanjian, sql, judulKolom);
         crud.settingLebarKolom(TabelPerjanjian, lebarKolom);
+    }
+    
+    
+    private void cariData(String cari){
+        String sqlCari= "";
+        try {
+            if (cari.isEmpty()) {
+                sqlCari = "SELECT*FROM perjanjian";
+            }else{
+                sqlCari="SELECT*FROM perjanjian WHERE id_perjanjian='"+cari+"'"+
+                        " or no_rm='"+cari+"'"+
+                        " or nama_pasien='"+cari+"'"+
+                        " or poliklinik='"+cari+"'"+
+                        " or dokter='"+cari+"'"+
+                        " or tgl_perjanjian='"+cari+"'"+
+                        " or keterangan='"+cari+"'";
+            }
+                crud.settingJudulTabel(TabelPerjanjian, judulKolom);
+                crud.tampilTabel(TabelPerjanjian, sqlCari, judulKolom);
+                crud.settingLebarKolom(TabelPerjanjian, lebarKolom);
+            
+        } catch (Exception e) {
+        }
     }
     /**
      * Creates new form framePerjanjian
@@ -67,6 +92,9 @@ public class framePerjanjian extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         TabelPerjanjian = new javax.swing.JTable();
+        jLabel8 = new javax.swing.JLabel();
+        txtLaporan = new javax.swing.JTextField();
+        cetak = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -131,6 +159,21 @@ public class framePerjanjian extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(TabelPerjanjian);
 
+        jLabel8.setText("Filter");
+
+        txtLaporan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtLaporanKeyReleased(evt);
+            }
+        });
+
+        cetak.setText("Cetak");
+        cetak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cetakActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -139,7 +182,7 @@ public class framePerjanjian extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -171,6 +214,14 @@ public class framePerjanjian extends javax.swing.JFrame {
                                 .addComponent(jButton3)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addComponent(jLabel8)
+                .addGap(18, 18, 18)
+                .addComponent(txtLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cetak)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtDokter, txtId, txtKet, txtNama, txtPoli, txtRM, txtTgl});
@@ -213,6 +264,11 @@ public class framePerjanjian extends javax.swing.JFrame {
                     .addComponent(jButton3))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txtLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cetak))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -226,6 +282,7 @@ public class framePerjanjian extends javax.swing.JFrame {
             }else{
                 String[] isiField={txtId.getText(),txtRM.getText(),txtNama.getText(),txtPoli.getText(),txtDokter.getText(),txtTgl.getText(),txtKet.getText()};
                 crud.SimpanDinamis("perjanjian", fieldSimpan, isiField);
+                refresh();
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.toString());
@@ -237,6 +294,7 @@ public class framePerjanjian extends javax.swing.JFrame {
         try {
                 String[] valueField = {txtRM.getText(),txtNama.getText(),txtPoli.getText(),txtDokter.getText(),txtTgl.getText(),txtKet.getText()};
                 crud.UbahDinamis("perjanjian", "id_perjanjian", txtId.getText(), fieldEdit, valueField);
+                refresh();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.toString());
         }
@@ -246,10 +304,38 @@ public class framePerjanjian extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
                 crud.HapusDinamis("perjanjian", "id_perjanjian", txtId.getText());
+                refresh();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.toString());
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void cetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cetakActionPerformed
+        // TODO add your handling code here:
+        try{
+            if (txtLaporan.getText().isEmpty()){
+                crud.tampilLaporan("src/laporan/perjanjian.jrxml", "SELECT*FROM perjanjian");
+            }else{
+                String sql="SELECT*FROM perjanjian WHERE id_perjanjian='"+txtLaporan.getText()+"'"+
+                        " or no_rm='"+txtLaporan.getText()+"'"+
+                        " or nama_pasien='"+txtLaporan.getText()+"'"+
+                        " or poliklinik='"+txtLaporan.getText()+"'"+
+                        " or dokter='"+txtLaporan.getText()+"'"+
+                        " or tgl_perjanjian='"+txtLaporan.getText()+"'"+
+                        " or keterangan='"+txtLaporan.getText()+"'";
+               crud.tampilLaporan("src/laporan/perjanjian.jrxml", sql); 
+            }
+        }catch(Exception ex){
+            Logger.getLogger(framePerjanjian.class.getName()).log(Level.SEVERE, null, ex);
+           
+
+        }
+    }//GEN-LAST:event_cetakActionPerformed
+
+    private void txtLaporanKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLaporanKeyReleased
+        // TODO add your handling code here:
+        cariData(txtLaporan.getText());
+    }//GEN-LAST:event_txtLaporanKeyReleased
 
     /**
      * @param args the command line arguments
@@ -288,6 +374,7 @@ public class framePerjanjian extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TabelPerjanjian;
+    private javax.swing.JButton cetak;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -298,12 +385,14 @@ public class framePerjanjian extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField txtDokter;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtKet;
+    private javax.swing.JTextField txtLaporan;
     private javax.swing.JTextField txtNama;
     private javax.swing.JTextField txtPoli;
     private javax.swing.JTextField txtRM;

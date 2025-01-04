@@ -15,6 +15,24 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
 import javax.swing.table.TableColumn;
 
+
+import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
+//Berfungsi mengambil file laporan yang dibuat dari Ireport
+
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 /**
  *
  * @author User
@@ -238,6 +256,24 @@ public class configDB {
           System.out.println(e.toString());
       }
   }
+      
+      public void tampilLaporan(String laporanFile, String SQL) throws SQLException{
+      try {
+          File file = new File(laporanFile);
+          JasperDesign jasDes = JRXmlLoader.load(file);
+
+           JRDesignQuery sqlQuery = new JRDesignQuery();
+           sqlQuery.setText(SQL);
+           jasDes.setQuery(sqlQuery);
+
+           JasperReport JR = JasperCompileManager.compileReport(jasDes);
+           JasperPrint JP = JasperFillManager.fillReport(JR,null,getKoneksiDB()); 
+           JasperViewer.viewReport(JP,false);
+         } catch (JRException e) {
+            JOptionPane.showMessageDialog(null,e.toString());       
+
+         }
+    }
 
 
  

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="770d5175-d8eb-409a-9705-5e5bf2d42f73">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT*FROM poliklinik]]>
+	</queryString>
+	<field name="id_poliklinik" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nama_poliklinik" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="135" y="21" width="271" height="33" uuid="393c26dc-e092-4ac2-b8cd-2ad436d7854a"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LAPORAN POLIKLINIK]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="273" height="20" uuid="bd6a7dd5-4cec-44ac-9178-a09259ff1acd"/>
+				<text><![CDATA[ID Poliklinik]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="273" y="0" width="282" height="20" uuid="34f944e3-7f45-4cdf-a3e1-a1813e355be5"/>
+				<text><![CDATA[Nama Poliklinik]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="273" height="20" uuid="4cb83c55-3ac7-454c-b56d-560466e78e18"/>
+				<textFieldExpression><![CDATA[$F{id_poliklinik}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="273" y="0" width="282" height="20" uuid="0a2342e6-02e8-461a-94a2-6714549ef744"/>
+				<textFieldExpression><![CDATA[$F{nama_poliklinik}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
